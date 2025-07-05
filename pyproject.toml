@@ -1,0 +1,27 @@
+[project]
+name = "bship-backend"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "Kettlecornwitha-QU", email = "kettle.corn.with.a.q.u@gmail.com" }
+]
+dependencies = [
+    "flask>=3.1.1",
+    "flask-cors>=6.0.1",
+]
+readme = "README.md"
+requires-python = ">= 3.8"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/bship_backend"]

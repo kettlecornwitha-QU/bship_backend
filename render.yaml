@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: battleship-backend
+    runtime: python
+    buildCommand: "rye sync"
+    startCommand: "python app.py"
+    envVars:
+      - key: FLASK_ENV
+        value: production
