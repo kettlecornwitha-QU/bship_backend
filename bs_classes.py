@@ -67,9 +67,9 @@ class Current_Board:
 			legs[direction] = self.get_clearance(coords, direction)
 		score = 0
 		if legs['L'] + legs['R'] + 1 >= ship_size:
-			score += min(legs['L'], legs['R'], ship_size)
+			score += min(legs['L'], legs['R'], ship_size) + 1
 		if legs['U'] + legs['D'] + 1 >= ship_size:
-			score += min(legs['U'], legs['D'], ship_size)
+			score += min(legs['U'], legs['D'], ship_size) + 1
 		return score
 
 	def get_total_score(self, coords: Tuple[int, int]) -> int:
