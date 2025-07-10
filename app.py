@@ -6,10 +6,14 @@ from bs_classes import Current_Board, Piece, Square
 from typing import List, Tuple
 import copy
 import os
+import logging
+logging.basicConfig(level=logging.DEBUG)
 
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:5173"])
+CORS(app, resources={r"/*": {"origins": [
+	"http://localhost:5173", "http://127.0.0.1:5173"
+]}})
 
 games = {}
 GRID_SIZE = 10
@@ -24,6 +28,7 @@ def square_to_dict(sq: Square) -> dict:
 
 @app.route("/new_game", methods=["POST"])
 def new_game() -> Response:
+	print("🔧 Received request for new game")
 	game_id = str(uuid4())
 	pieces = [Piece(5, 1), Piece(4, 1), Piece(3, 2), Piece(2, 1)]
 	squares = [
@@ -117,5 +122,6 @@ def undo() -> Response:
 	return jsonify({"message": "Undo successful"})
 
 if __name__ == "__main__":
-	port = int(os.environ.get("PORT", 10000))
-	app.run(host="0.0.0.0", port=port)
+	#port = int(os.environ.get("PORT", 10000))
+	#app.run(host="0.0.0.0", port=port)
+	app.run(debug=True, port=5000)
